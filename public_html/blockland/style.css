@@ -240,8 +240,9 @@ hover설정(마우스가 위에 올라갔을 때) */
 }
 
 .chat_main #nav_title{
-    position: absolute;
-    top: 10px;
+    position: relative;   
+    left: 45%;
+    color: salmon;
 }
 .chat_log{
     position: relative;
@@ -278,4 +279,27 @@ hover설정(마우스가 위에 올라갔을 때) */
     width: 11%;
     right: 5px;
     border-radius: 8px;
+}
+
+#mymain_local{
+    position: absolute;
+    left: 20px;
+    top: 50px;
+}
+
+#wingleft {}
+
+#wingright {}
+
+#localVideo {
+    position: absolute;
+}
+#mymain_remote{
+    z-index: 10;
+    position: absolute;
+    right: 10px;
+}
+#remoteVideo {
+    right: 80px;
+    position: absolute;
 }

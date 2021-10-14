@@ -297,7 +297,7 @@ class Game {
 			game.scene.add(game.textMesh7)
 		});
 		// 동영상 화면 텍스쳐 -- 대형 화면
-		this.video = document.getElementById('video');
+		this.video = document.getElementById('localVideo');
 		this.video.volume = 0.1;
 		const videoTexture = new THREE.VideoTexture(this.video);
 		const videoMaterial = new THREE.MeshBasicMaterial({

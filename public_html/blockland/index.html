@@ -60,6 +60,11 @@
 	<script type="module" src="libs/three.js-master/src/textures/VideoTexture.js"></script>
 	<script type="module" src="libs/three.js-master/examples/js/renderers/CSS3DRenderer.js"></script>
 
+	<!-- webRTC 모듈 -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@remotemonster/sdk/remon.min.js"></script>
+
 	<script src="libs/Detector.js"></script>
 	<script src="libs/toon3d.js"></script>
 
@@ -164,6 +169,32 @@
 			<button class="save-nick"> 저장 </button>
 		</div>
 	</div>
+	<!-- webRTC local -->
+	<div id="wingleft"></div>
+    <div id="mymain_local">
+        <h2>방송</h2>
+        <video id="localVideo" class="remote-video" autoplay muted style="visibility: hidden;"></video>
+        <br>
+        <input id="channelNameInput" class="text-center" type="text" placeholder="channel name" autofocus>
+        <button id="localmystart" class="btn-main1">Room Create</button>
+        <button id="localmystop" class="btn-main" disabled>Stop</button>
+        <button id="screenshare" class="btn-main">screenshare</button>
+    </div>
+    <div id="wingright"></div>
+
+	<!-- webRTC remote-->
+	<div id="wingleft"></div>
+    <div id="mymain_remote">
+        <h2>시청</h2>
+        <video id="remoteVideo" autoplay muted></video>
+        <br>
+        <button id="remotemystart" class="btn-main">Join</button>
+        <button id="remotemystop" class="btn btn-main" disabled>Stop</button>
+    </div>
+    <div id="wingright"></div>
+
+	<script src="rtc_local.js"></script>
+	<script src="rtc_remote.js"></script>
 	<script>
 		//let nickList = [];
 		$('.save-nick').click(function () {
