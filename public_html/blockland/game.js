@@ -130,7 +130,7 @@ class Game {
 		// --------------------------------------------------------------------------------------------------------------------
 		// 텍스트1 : Stage(기타)
 		const fontLoader = new THREE.FontLoader();
-		fontLoader.load("/libs/three.js-master/examples/fonts/helvetiker_regular.typeface.json", function (font) {
+		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
 			const fgeometry = new THREE.TextGeometry('Stage', {
 				font: font,
 				size: 500, // 텍스트 크기
@@ -152,7 +152,7 @@ class Game {
 			game.scene.add(game.textMesh1)
 		});
 		// 텍스트1 팀명 : BIT 
-		fontLoader.load("/libs/three.js-master/examples/fonts/helvetiker_regular.typeface.json", function (font) {
+		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
 			const fgeometry = new THREE.TextGeometry('BIT ', {
 				font: font,
 				size: 500, // 텍스트 크기
@@ -174,7 +174,7 @@ class Game {
 			game.scene.add(game.textMesh2)
 		});
 		// 텍스트2 팀명 : MetaUS
-		fontLoader.load("/libs/three.js-master/examples/fonts/helvetiker_regular.typeface.json", function (font) {
+		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
 			const fgeometry = new THREE.TextGeometry('MetaUS ', {
 				font: font,
 				size: 500, // 텍스트 크기
@@ -197,7 +197,7 @@ class Game {
 			game.scene.add(game.textMesh3)
 		});
 		// 텍스트3 팀명 : 4Runner
-		fontLoader.load("/libs/three.js-master/examples/fonts/helvetiker_regular.typeface.json", function (font) {
+		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
 			const fgeometry = new THREE.TextGeometry('4Runner ', {
 				font: font,
 				size: 500, // 텍스트 크기
@@ -220,7 +220,7 @@ class Game {
 			game.scene.add(game.textMesh4)
 		});
 		// 텍스트4 팀명 : 힐링캠프
-		fontLoader.load("/libs/three.js-master/examples/fonts/helvetiker_regular.typeface.json", function (font) {
+		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
 			const fgeometry = new THREE.TextGeometry('Healing Camp ', {
 				font: font,
 				size: 500, // 텍스트 크기
@@ -243,7 +243,7 @@ class Game {
 			game.scene.add(game.textMesh5)
 		});
 		// 텍스트5 팀명 : Creeps
-		fontLoader.load("/libs/three.js-master/examples/fonts/helvetiker_regular.typeface.json", function (font) {
+		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
 			const fgeometry = new THREE.TextGeometry('Creeps', {
 				font: font,
 				size: 500, // 텍스트 크기
@@ -267,7 +267,7 @@ class Game {
 			game.scene.add(game.textMesh6)
 		});
 		// 텍스트6 팀명 : KMH
-		fontLoader.load("/libs/three.js-master/examples/fonts/helvetiker_regular.typeface.json", function (font) {
+		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
 			const fgeometry = new THREE.TextGeometry('KMH', {
 				font: font,
 				size: 500, // 텍스트 크기
