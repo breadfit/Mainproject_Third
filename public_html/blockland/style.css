@@ -240,8 +240,8 @@ hover설정(마우스가 위에 올라갔을 때) */
 }
 
 .chat_main #nav_title{
-    
-    display: inline-block;
+    position: absolute;
+    top: 10px;
 }
 .chat_log{
     position: relative;

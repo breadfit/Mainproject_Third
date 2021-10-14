@@ -110,49 +110,6 @@ class Player {
 			if (game.animations.Idle !== undefined) player.action = "Idle";
 
 		});
-
-		// geme.scene.add(this.nickname);
-
-		/*
-		const self = this;
-		const loader = new THREE.TextureLoader();
-		loader.load(
-			// resource URL
-			`${game.assetsPath}images/speech.png`,
-			// onLoad callback
-			function (texture) {
-				// in this example we create the material when the texture is loaded
-				self.img = texture.image;
-				self.mesh.material.map = texture;
-				self.mesh.material.transparent = true;
-				self.mesh.material.needsUpdate = true;
-				if (msg !== undefined) self.update(msg);
-				if (this.mesh === undefined) return;
-				let context = this.context;
-				if (this.mesh.userData.context === undefined) {
-					const canvas = this.createOffscreenCanvas(this.config.width, this.config.height);
-					this.context = canvas.getContext('2d');
-					context = this.context;
-					context.font = `${this.config.size}pt ${this.config.font}`;
-					context.fillStyle = this.config.colour;
-					context.textAlign = 'center';
-					this.mesh.material.map = new THREE.CanvasTexture(canvas);
-				}
-				const bg = this.img;
-				context.clearRect(0, 0, this.config.width, this.config.height);
-				context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, this.config.width, this.config.height);
-				this.wrapText(msg, context);
-				this.mesh.material.map.needsUpdate = true;
-			},
-			// onProgress callback currently not supported
-			undefined,
-			// onError callback
-			function (err) {
-				console.error('An error happened.');
-			}
-		);
-		*/
-
 	}
 
 	set action(name) {
