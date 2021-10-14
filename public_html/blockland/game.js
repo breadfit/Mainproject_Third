@@ -11,12 +11,15 @@ class Game {
 			GAMEOVER: Symbol("gameover")
 		});
 		this.mode = this.modes.NONE;
-
+		
+		this.selected;
+		this.isPlaying = false;
 		this.container;
 		this.player;
 		this.cameras;
 		this.camera;
 		this.scene;
+		this.sound;
 		this.textMesh1;
 		this.textMesh2;
 		this.textMesh3;
@@ -25,7 +28,6 @@ class Game {
 		this.textMesh6;
 		this.textMesh7;
 		this.renderer;
-		this.ytRenderer;
 		this.animations = {};
 		this.assetsPath = 'assets/';
 
@@ -320,38 +322,6 @@ class Game {
 		videoScreen1.position.set(-700, 300, -6190); //이게 맞는 위치
 		this.scene.add(videoScreen1);
 
-		this.ytRenderer = new THREE.CSS3DRenderer(({alpha: true}));
-		this.ytRenderer.setSize(window.innerWidth, window.innerHeight)
-		document.body.appendChild(this.ytRenderer.domElement);
-
-		this.ytRenderer.domElement.style.position = 'absolute';
-    	this.ytRenderer.domElement.style.top = 0;
-    	//this.ytRenderer.domElement.style.zIndex = 0;
-
-		const section = document.createElement('section');
-		section.style.width = '2000px';
-		section.style.height = '1600px';
-		section.style.backgroundColor = '#000';
-
-		const iframe = document.createElement('iframe');
-		iframe.style.width = '2000px';
-		iframe.style.height = '1600px';
-		iframe.style.border = '0px';
-		// ?rel=0&amp;autoplay=1&amp;loop=1; 필수 추가
-		iframe.src = 'https://www.youtube.com/embed/9xBSLI7EsTg?rel=0&amp;autoplay=1&amp;loop=1;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen';
-		section.appendChild(iframe);
-		const ytObject = new THREE.CSS3DObject(section);
-		ytObject.position.set(100, 500, 10);
-		
-		this.scene.add(ytObject);
-
-		// ytObject.position.set( 1010, 1000, 100 );
-		
-		// const ytGeometry = new THREE.PlaneGeometry(5000, 5000, 2000);
-		// const ytPlane = new THREE.Mesh( ytGeometry, ytObject );
-		// ytPlane.position.set(0, 2000, 3500); //이게 맞는 위치
-		// this.scene.add(ytPlane);
-
 		// const startButton = document.getElementById('startButton'); //id값이 startButton 일 때
 		// startButton.addEventListener('click', this.init); //버튼을 클릭하면 음악재생
 
@@ -359,20 +329,31 @@ class Game {
 		// overlay.remove();
 
 		// 사운드
-		// const listener = new THREE.AudioListener();
-		// this.camera.add(listener);
+		const listener = new THREE.AudioListener();
+		this.camera.add(listener);
 
-		// // create a global audio source
-		// const sound = new THREE.Audio(listener);
+		// create a global audio source
+		this.sound = new THREE.PositionalAudio(listener);
 
-		// // load a sound and set it as the Audio object's buffer
-		// const audioLoader = new THREE.AudioLoader();
-		// audioLoader.load('assets/sound/bensound-ukulele.mp3', function (buffer) {
-		// 	sound.setBuffer(buffer);
-		// 	sound.setLoop(true);
-		// 	sound.setVolume(0.5);
-		// 	sound.play();
-		// });
+		// load a sound and set it as the Audio object's buffer
+		const audioLoader = new THREE.AudioLoader();
+		audioLoader.load('assets/sound/bensound-ukulele.mp3', function (buffer) {
+			game.sound.setBuffer(buffer);
+			game.sound.setLoop();
+			game.sound.setRefDistance( 20 );
+			game.sound.setVolume(0.5);
+			//this.sound.play();
+		});
+
+		const cube = new THREE.BoxGeometry( 1000, 1000, 1000 );
+		const cubeMaterial = new THREE.MeshPhongMaterial( { color: 0xff2200 } );
+		const cubeMesh = new THREE.Mesh( cube, cubeMaterial );
+		cubeMesh.position.set(0, 1000, 0)
+		cubeMesh.name = "audio"
+		
+		this.scene.add( cubeMesh );
+		
+		cubeMesh.add( this.sound );
 
 		// ground
 		const tLoader = new THREE.TextureLoader();
@@ -738,6 +719,28 @@ class Game {
 			window.addEventListener('touchdown', (event) => game.onMouseDown(event), false);
 		} else {
 			window.addEventListener('mousedown', (event) => game.onMouseDown(event), false);
+			window.addEventListener('click', (event) => {
+
+				const raycaster1 = new THREE.Raycaster();
+				const mouse1 = {};
+
+				mouse1.x = (event.clientX / this.renderer.domElement.clientWidth) * 2 - 1;
+				mouse1.y = - (event.clientY / this.renderer.domElement.clientHeight) * 2 + 1;
+
+				raycaster1.setFromCamera(mouse1, this.camera);
+
+				const items = raycaster1.intersectObjects(this.scene.children);
+
+				items.forEach((i) => {
+					if (i.object.name != "") {
+						console.log(i.object.name);
+						this.selected = i.object;
+						console.log("확인", this.selected);
+						this.isPlaying = !this.isPlaying;
+					}
+				})
+			})
+
 		}
 		window.addEventListener('resize', () => game.onWindowResize(), false);
 	}
@@ -1032,8 +1035,13 @@ class Game {
 		}
 		if (this.speechBubble !== undefined) this.speechBubble.show(this.camera.position);
 
+		if (this.isPlaying){
+			this.sound.play();
+		}else{
+			this.sound.pause();
+		}
+
 		this.renderer.render(this.scene, this.camera);
-		this.ytRenderer.render(this.scene, this.camera);
 		game.textMesh1.rotation.y += 0.012;
 		game.textMesh2.rotation.y += 0.01;
 		game.textMesh3.rotation.y += 0.011;
