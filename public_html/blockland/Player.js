@@ -53,8 +53,10 @@ class Player {
 			});
 
 			player.object = new THREE.Object3D();
-			player.object.position.set(-500,520,-1400);  // 캐릭터 생성위치(200, 0, 900) 계단앞
-			player.object.rotation.set(0, 3, 0);
+			// player.object.position.set(-500,150,-1400);  // 캐릭터 생성위치(200, 0, 900) 계단앞
+			// player.object.rotation.set(0, 3, 0);
+			player.object.position.set(200, 0, 900);  // 캐릭터 생성위치(200, 0, 900) 계단앞
+			player.object.rotation.set(0, 0, 0);
 
 			player.object.add(object);
 			if (player.deleted === undefined) game.scene.add(player.object);
@@ -76,10 +78,81 @@ class Player {
 				player.object.userData.remotePlayer = true;//멀티플레이어의 사용자 데이터를 true
 				const players = game.initialisingPlayers.splice(game.initialisingPlayers.indexOf(this), 1);//플레이어찾아서
 				game.remotePlayers.push(players[0]);//원격플레이어배열에 푸쉬
+
+				////////////////////////////////////////////
+				// nickname용 객체 생성 시작           
+				const fontLoader = new THREE.FontLoader();
+				fontLoader.load("/libs/three.js-master/examples/fonts/helvetiker_regular.typeface.json", function (font) {
+				/////////////////////////// 생성자로 넘겨받은 game에서 userNick를 get 함.
+					const fgeometry = new THREE.TextGeometry( game.userNick, {
+						font: font,
+						size: 50, // 텍스트 크기
+						height: 20, // 돌출 두께
+						curveSegments: 12, // 곡선의 점 : 기본값 12
+						bevelEnabled: false, // 윤곽선 on
+						bevelThickness: 0, // 윤곽선 두께? : 기본값 10
+						bevelSize: 0, //텍스트 윤곽선 : 기본값 8
+						bevelOffset: 0, // 텍스트 윤곽선이 시작 되는 거리 : 기본값 0
+						bevelSegments: 5
+					});
+					fgeometry.center(); // 폰트 중심점 설정하기
+					player.nickname = new THREE.Mesh(fgeometry, [
+						new THREE.MeshPhongMaterial({ color: 0xad4000 }), // front
+						new THREE.MeshPhongMaterial({ color: 0x5c2301 })     // side
+					])
+					player.nickname.castShadow = true
+					player.nickname.position.set(player.object.position.x, player.object.position.y+200, player.object.position.z) // 텍스트 위치
+					game.scene.add(player.nickname);
+				});
+				// nickname용 객체 생성 끝
 			}
 
 			if (game.animations.Idle !== undefined) player.action = "Idle";
+
 		});
+
+		// geme.scene.add(this.nickname);
+
+		/*
+		const self = this;
+		const loader = new THREE.TextureLoader();
+		loader.load(
+			// resource URL
+			`${game.assetsPath}images/speech.png`,
+			// onLoad callback
+			function (texture) {
+				// in this example we create the material when the texture is loaded
+				self.img = texture.image;
+				self.mesh.material.map = texture;
+				self.mesh.material.transparent = true;
+				self.mesh.material.needsUpdate = true;
+				if (msg !== undefined) self.update(msg);
+				if (this.mesh === undefined) return;
+				let context = this.context;
+				if (this.mesh.userData.context === undefined) {
+					const canvas = this.createOffscreenCanvas(this.config.width, this.config.height);
+					this.context = canvas.getContext('2d');
+					context = this.context;
+					context.font = `${this.config.size}pt ${this.config.font}`;
+					context.fillStyle = this.config.colour;
+					context.textAlign = 'center';
+					this.mesh.material.map = new THREE.CanvasTexture(canvas);
+				}
+				const bg = this.img;
+				context.clearRect(0, 0, this.config.width, this.config.height);
+				context.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, this.config.width, this.config.height);
+				this.wrapText(msg, context);
+				this.mesh.material.map.needsUpdate = true;
+			},
+			// onProgress callback currently not supported
+			undefined,
+			// onError callback
+			function (err) {
+				console.error('An error happened.');
+			}
+		);
+		*/
+
 	}
 
 	set action(name) {
@@ -113,10 +186,11 @@ class Player {
 				this.object.quaternion.setFromEuler(euler);//방향업데이트
 				this.action = data.action;
 				found = true;
+// nickname 용 update 시작
+				this.nickname.position.set(data.x, data.y+500, data.z);
+// nickname 용 update 끝
 			}
 			if (!found) this.game.removePlayer(this);//특정항목 못찾을시 false로 설정된 플레이어 제거
 		}
 	}
 }
-
-

@@ -1,6 +1,10 @@
 class Game {
-	constructor() {
+	constructor(nick) {
 		if (!Detector.webgl) Detector.addGetWebGLMessage();
+		//////////////////////////////////////////////	
+		// Game 클래스 객체화 할 때 nick을 넘겨 받아서 userNick 속성에 저장함
+		this.userNick = nick;
+		//////////////////////////////////////////////	
 
 		this.modes = Object.freeze({
 			NONE: Symbol("none"),
@@ -14,12 +18,15 @@ class Game {
 		
 		this.selected;
 		this.isPlaying = false;
+		this.isVideoPlaying = false;
 		this.container;
 		this.player;
 		this.cameras;
 		this.camera;
 		this.scene;
 		this.sound;
+		this.video;
+		this.video1;
 		this.textMesh1;
 		this.textMesh2;
 		this.textMesh3;
@@ -289,10 +296,10 @@ class Game {
 			game.textMesh7.rotation.y = 17
 			game.scene.add(game.textMesh7)
 		});
-		// // 동영상 화면 텍스쳐
-		const video = document.getElementById('video1');
-		video.play(); // 필수 자동재생
-		const videoTexture = new THREE.VideoTexture(video);
+		// 동영상 화면 텍스쳐 -- 대형 화면
+		this.video = document.getElementById('video');
+		this.video.volume = 0.1;
+		const videoTexture = new THREE.VideoTexture(this.video);
 		const videoMaterial = new THREE.MeshBasicMaterial({
 			map: videoTexture,
 			side: THREE.DoubleSide, // DoubleSide 양쪽 면이 다 보이게
@@ -304,11 +311,14 @@ class Game {
 		const videoGeometry = new THREE.PlaneGeometry(10500, 4700, 2000);  // 동영상 재생 화면 생성 및 크기조정
 		const videoScreen = new THREE.Mesh(videoGeometry, videoMaterial);  // 동영상 화면 및 videoMaterial
 		videoScreen.position.set(0, 2000, 3920); //이게 맞는 위치
+		videoScreen.rotation.y = Math.PI
 		this.scene.add(videoScreen);
-
-		const video1 = document.getElementById('video1');
-		video1.play(); // 필수 자동재생
-		const videoTexture1 = new THREE.VideoTexture(video1);
+		
+		//작은 화면
+		this.video1 = document.getElementById('video1');
+		this.video1.volume = 0.1;
+		this.video1.play(); // 필수 자동재생
+		const videoTexture1 = new THREE.VideoTexture(this.video1);
 		const videoMaterial1 = new THREE.MeshBasicMaterial({
 			map: videoTexture1,
 			side: THREE.FrontSide, // DoubleSide 양쪽 면이 다 보이게
@@ -319,20 +329,15 @@ class Game {
 
 		const videoGeometry1 = new THREE.PlaneGeometry(500, 500, 2000);  // 동영상 재생 화면 생성 및 크기조정
 		const videoScreen1 = new THREE.Mesh(videoGeometry1, videoMaterial1);  // 동영상 화면 및 videoMaterial
+		videoScreen1.name = "video1"
 		videoScreen1.position.set(-700, 300, -6190); //이게 맞는 위치
 		this.scene.add(videoScreen1);
-
-		// const startButton = document.getElementById('startButton'); //id값이 startButton 일 때
-		// startButton.addEventListener('click', this.init); //버튼을 클릭하면 음악재생
-
-		// const overlay = document.getElementById( 'overlay' );
-		// overlay.remove();
 
 		// 사운드
 		const listener = new THREE.AudioListener();
 		this.camera.add(listener);
 
-		// create a global audio source
+		// create a local audio source
 		this.sound = new THREE.PositionalAudio(listener);
 
 		// load a sound and set it as the Audio object's buffer
@@ -342,7 +347,6 @@ class Game {
 			game.sound.setLoop();
 			game.sound.setRefDistance( 20 );
 			game.sound.setVolume(0.5);
-			//this.sound.play();
 		});
 
 		const cube = new THREE.BoxGeometry( 1000, 1000, 1000 );
@@ -352,7 +356,7 @@ class Game {
 		cubeMesh.name = "audio"
 		
 		this.scene.add( cubeMesh );
-		
+		// 큐브에 audio추가
 		cubeMesh.add( this.sound );
 
 		// ground
@@ -368,13 +372,6 @@ class Game {
 		mesh.rotation.x = - Math.PI / 2;
 		mesh.receiveShadow = true;
 		this.scene.add(mesh);
-
-		// 그리드
-		// const mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 10000, 10000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
-		// mesh.rotation.x = - Math.PI / 2;
-		// //mesh.position.y = -100;
-		// mesh.receiveShadow = true;
-		// this.scene.add( mesh );
 
 		const grid = new THREE.GridHelper(5000, 40, 0x000000, 0x000000);
 		//grid.position.y = -100;
@@ -732,43 +729,28 @@ class Game {
 				const items = raycaster1.intersectObjects(this.scene.children);
 
 				items.forEach((i) => {
-					if (i.object.name != "") {
+					if (i.object.name == "audio") {
 						console.log(i.object.name);
 						this.selected = i.object;
 						console.log("확인", this.selected);
 						this.isPlaying = !this.isPlaying;
 					}
 				})
+				items.forEach((i) => {
+					if (i.object.name == "video1") {
+						console.log(i.object.name);
+						this.selected = i.object;
+						console.log("확인", this.selected);
+						this.isVideoPlaying = !this.isVideoPlaying;
+					}
+				})
 			})
-
 		}
 		window.addEventListener('resize', () => game.onWindowResize(), false);
 	}
 
 	loadEnvironment(loader) {
 		const game = this;
-		// loader.load(`${this.assetsPath}fbx/town.fbx`, function(object){
-		// 	game.environment = object;
-		// 	game.colliders = [];
-		// 	game.scene.add(object);
-		// 	object.traverse( function ( child ) {
-		// 		if ( child.isMesh ) {
-		// 			if (child.name.startsWith("proxy")){
-		// 				game.colliders.push(child);
-		// 				child.material.visible = false;
-		// 			}else{
-		// 				child.castShadow = true;
-		// 				child.receiveShadow = true;
-		// 			}
-		// 		}
-		// 	} );
-
-		// const tLoader = new THREE.TextureLoader();
-		// const backgroundtexture =tLoader.load( `${game.assetsPath}/images/pngegg.png` );
-		// backgroundtexture.repeat.set(35,35);
-		// game.scene.background = backgroundtexture;
-
-		// game.loadNextAnim(loader);
 
 		const tloader = new THREE.CubeTextureLoader();
 		tloader.setPath(`${game.assetsPath}/images/`);
@@ -821,7 +803,7 @@ class Game {
 		}
 		this.player.updateSocket();
 	}
-
+1
 	createCameras() {
 		const offset = new THREE.Vector3(0, 80, 0);
 		const front = new THREE.Object3D();
@@ -1039,6 +1021,12 @@ class Game {
 			this.sound.play();
 		}else{
 			this.sound.pause();
+		}
+
+		if (this.isVideoPlaying){
+			this.video1.play();
+		}else{
+			this.video1.pause();
 		}
 
 		this.renderer.render(this.scene, this.camera);

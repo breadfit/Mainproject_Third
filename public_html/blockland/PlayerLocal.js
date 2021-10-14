@@ -6,6 +6,7 @@ class PlayerLocal extends Player {// 로컬플레이어에만 적용되는 소�
 		const socket = io.connect();//서버에서 소켓 처음 생성
 		socket.on('setId', function (data) {//클라이어트 소켓으로 다시 돌아감
 			player.id = data.id;
+			console.log('localid', data.id)
 		});
 		socket.on('remoteData', function (data) {//연결된 모든소켓에 대한 정보가 포함된 데이터
 			game.remoteData = data;
@@ -21,6 +22,7 @@ class PlayerLocal extends Player {// 로컬플레이어에만 적용되는 소�
 				if (index != -1) {
 					game.remotePlayers.splice(index, 1);//원격플레이어 배열에서 특정항목에 연결
 					game.scene.remove(players[0].object);//게임장면에서 해당플레이어 개체 제거
+					game.scene.remove(players[0].nickname);
 				}
 			} else {//찾지 못했다면
 				index = game.initialisingPlayers.indexOf(data.id);//초기화 플레이어에 여전히 있을수 있음
@@ -166,4 +168,3 @@ class PlayerLocal extends Player {// 로컬플레이어에만 적용되는 소�
 		this.updateSocket();//모든 서버 측의 위치 업데이트
 	}
 }
-

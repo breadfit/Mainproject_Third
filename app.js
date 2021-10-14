@@ -1,9 +1,13 @@
 const express = require('express');
+const { isNullOrUndefined } = require('util');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+
+
 // const {userJoin , getCurrentUser, userLeave } = require('../../public_html/blockland/users')
 //this.users = new Users();
+
 
 let nickList = [];
 
@@ -17,8 +21,14 @@ app.get('/',function(req, res) {
 
 io.sockets.on('connection', function(socket){
 	
+
 	
-	console.log(nickList)
+	socket.userData = { x:0, y:0, z:0, heading:0 };										
+ 
+	console.log(`${socket.id} connected`);
+	socket.emit('setId', { id:socket.id });//이벤트발생 함수 // 서버쪽에서 이벤트 발생시 클라이언트 페이지의 해당 이벤트 리스너 처리
+	
+	console.log(" First ",nickList)
 	//console.log("출력" + users.userJoin(socket.id, usernick))
 
 	socket.on('nickdata', (data) =>{
@@ -29,16 +39,26 @@ io.sockets.on('connection', function(socket){
 
 		io.emit('nicksave', nickList)
 	
+	// nicklist 초기화  
+
+	socket.on('updateData', (data)=>{
+		nickList = data;
+		console.log("현재 인원",nickList)
+		//return nickList;
+	})
+	
 		// const user = this.users.userJoin(socket.id, usernick );
 		// console.log("실험" , data.usernick);
 		// socket.join(user)
+
 	})
 
+	socket.on('send message', function(name, text){
+		var msg = name + ' : ' + text;
+		console.log(msg);
+		io.emit('receive message', msg);
+	});
 
-	socket.userData = { x:0, y:0, z:0, heading:0 };										
- 
-	console.log(`${socket.id} connected`);
-	socket.emit('setId', { id:socket.id });//이벤트발생 함수 // 서버쪽에서 이벤트 발생시 클라이언트 페이지의 해당 이벤트 리스너 처리
 	
     socket.on('disconnect', function(){
 		socket.broadcast.emit('deletePlayer', { id: socket.id });//나를 제외한 전체에게 실시간 전송 // 특정 소켓 삭제
@@ -99,5 +119,3 @@ setInterval(function(){
     }
 	if (pack.length>0) io.emit('remoteData', pack);// 포켓길이가 0보다 크다고 가정하고 pack배열이 서버측으로 전송
 }, 40);
-
-

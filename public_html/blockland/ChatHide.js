@@ -2,9 +2,9 @@ let chatShow = false;
 function show_hide(){
 
     if(chatShow) {
-        $('.chat-container').show();
+        $('.chat_main').show();
     } else {
-        $('.chat-container').hide();
+        $('.chat_main').hide();
     }
 
     chatShow = !chatShow;

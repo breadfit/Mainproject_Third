@@ -13,27 +13,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.error {
-    background-color:#ff5252;
-    width: 50px;
-    position: relative;
-    color:white;
-    padding:10px;
-    border-radius:5px;
-    /* margin-top:10px; */
-    z-index: 3;
-}
-.success {
-    width: 50px;
-    position: relative;
-    background-color:#00e676;
-    color:white;
-    padding:10px;
-    border-radius:5px;
-    /* margin-top:10px; */
-    z-index: 3;
-}
-
 body{
     /* body의 높이가 최소100vh만큼 표시 */
     min-height: 100vh;
@@ -52,27 +31,54 @@ body{
     /* 높이 100vh 는 vieport기준의 height비율
     즉 100vh는 100%를 의미 */
     height: 100vh;
-    background: #3e0748;
+    background: linear-gradient(to right, #dadafc, #efbad6, #ffd6aa, #fef5d4);
     /* 마우스가 navigation클래스에서 떨어지면 가로로 0.5초 */
     transition: width 0.5s;
     /* 넘친 컨텐츠는 잘려지고 안보임 */
     overflow: hidden;
+    
 }
 .navigation .bit{
+    top: 5px;
+    left: 10px;
     position: relative;
     /* text-decoration: none; */
     color: #fff;
-    font-size: 20px;
+    font-size: 30px;
     /* li에 점 없애기 */
     list-style: none;
+    white-space: nowrap;
     text-decoration: none;
 }
-
+.navigation .bit a{
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+}
+/* #fffafa */
 .navigation .connect-users{
     position: absolute;
+    background: rgb(250, 240, 230);
+    color: rgb(17, 17, 17);
+    overflow: auto;
+    z-index: 5;
+    left: 10px;
     top: 60px;
-    left: auto;
-    
+    width: 280px;
+    height: 400px;
+    border-radius: 8px;
+}
+.navigation .connect-users::-webkit-scrollbar{
+    width: 12px;
+    height: 12px;
+    border-radius: 8px;
+}
+.navigation .connect-users::-webkit-scrollbar-thumb{
+    background-color: rgb(17, 17, 17);
+    border-radius: 8px;
+}
+.navigation .connect-users::-webkit-scrollbar{
+    background-color:#fff;
 }
 /* 마우스가 navigation클래스에 올라갈 때 설정
 link -> visited -> hover -> active 순서로 해야 에러X */
@@ -87,7 +93,7 @@ link -> visited -> hover -> active 순서로 해야 에러X */
     /* ul 포지션이 위 부모 값에 영향을
     받지 않고 독립적으로 설정할 때 absolute 사용 */
     position: absolute;
-    top: 100px;
+    top: 70px;
     left: 0;
     width: 100%;
     /* 왼쪽을 기준으로 5px만큼 간격주기 */
@@ -122,7 +128,7 @@ link -> visited -> hover -> active 순서로 해야 에러X */
 /* navigation 클래스의 ul태그의 li태그의
 hover설정(마우스가 위에 올라갔을 때) */
 .navigation ul li:hover{
-    background: #ea1d63;
+    background: #faf0e6;
 }
 
 /* navigation 클래스의 ul태그의 li태그의 a태그설정 */
@@ -162,11 +168,11 @@ hover설정(마우스가 위에 올라갔을 때) */
     right: 0;
     width: 60px;
     height: 60px;
-    background: #330748;
+    background: rgb(109, 146, 155);
     cursor: pointer;
 }
 .toggle.active{
-    background: #ea1d63;
+    background: #faf0e6;
 }
 .toggle:before{
     /* css 유니코드
@@ -187,32 +193,6 @@ hover설정(마우스가 위에 올라갔을 때) */
 /* -------------사이드 바 안에 채팅창------------- */
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-:root {
-	--dark-color-a: #330748;
-	--dark-color-b: #330748;
-	--light-color: #e6e9ff;
-	--success-color: #5cb85c;
-	--error-color: #d9534f;
-}
-
-ul {
-	list-style: none;
-}
-
-a {
-	text-decoration: none;
-}
-
-.btn {
-	cursor: pointer;
-    width: 50px;
-    height: 45px;
-	/* padding: 5px 15px; */
-	background: var(--light-color);
-	color: var(--dark-color-a);
-	border: 0;
-	font-size: 12px;
-}
 
 .create-nick{
     position: absolute;
@@ -246,167 +226,56 @@ a {
     background-color: #555555;
     color: white;
 }
-/* Chat Page */
-.chat-container {
-    position: absolute;
-    display: none;
-    right: 0px;
+
+/* Chat in Sidebar */
+.chat_main{
+    position: fixed;
+    display: inline-block;
+    right: 0;
+    background-color: rgb(250, 240, 230);
+    border-radius: 8px;
     top: 100px;
-    width: 350px;
-    height: 600px;
-	max-width: 1100px;
-	background: #fff;
-	margin: 30px auto;
-	overflow: hidden;
-    opacity: 0.9;
+    width: 300px;
+    height: 300px;
 }
 
-.chat-header {
-    position: relative;
-	background: var(--dark-color-a);
-	color: #fff;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	padding: 15px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.chat-main {
-    position: relative;
-	display: grid;
-	grid-template-columns: 1fr 3fr;
-}
-
-.chat-sidebar {
-    height: 460px;
-    position: relative;
-	background: var(--dark-color-b);
-	color: #fff;
-    width: 120px;
-	padding: 20px 20px 60px;
-	overflow-y: scroll;	
-	min-height: 200px;
-}
-
-.chat-sidebar h2 {
-	font-size: 20px;
-	background: rgba(0, 0, 0, 0.1);
-	padding: 10px;
-	margin-bottom: 20px;
-}
-
-.chat-sidebar h3 {
-	margin-bottom: 15px;
-	
-}
-
-.chat-sidebar ul li {
-	padding: 10px 0;
-}
-
-.chat-messages {
-	padding: 30px;
-	max-height: 500px;
-	overflow-y: scroll;
-}
-
-.chat-messages .message {
-	padding: 10px;
-	margin-bottom: 15px;
-	background-color: var(--light-color);
-	border-radius: 5px;
-}
-
-.chat-messages .message .meta {
-	font-size: 15px;
-	font-weight: bold;
-	color: var(--dark-color-b);
-	opacity: 0.7;
-	margin-bottom: 7px;
-}
-
-.chat-messages .message .meta span {
-	color: #777;
-}
-
-.chat-form-container {
-	padding: 6px 6px;
-	background-color: var(--dark-color-a);
-}
-
-.chat-form-container form {
-	height: 50px;
-    display: flex;
+.chat_main #nav_title{
     
+    display: inline-block;
 }
-
-.chat-form-container input[type='text'] {
-	width: 50px;
-    font-size: 16px;
-	padding: 5px;
-	flex: 1;
+.chat_log{
+    position: relative;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    width: 97%;
+    height: 235px;
+    border-radius: 8px;
 }
-
-/* Join Page */
-.join-container {
-	max-width: 500px;
-	margin: 80px auto;
-	color: #fff;
+#chat{
+    border-radius: 8px;
+    position: relative;
+    top: 5px;
 }
-
-.join-header {
-	text-align: center;
-	padding: 20px;
-	background: var(--dark-color-a);
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+.name{
+    border-radius: 8px;
+    /* 테두리 스타일 : 직선 */
+    border-style: solid;
+    position: absolute;
+    left: 5px;
+    width: 20%;
+ }
+.message_send{
+    border-radius: 8px;
+    position: absolute;
+    border-style: solid;
+    left: 70px;
+    width: 63%;
 }
-
-.join-main {
-	padding: 30px 40px;
-	background: var(--dark-color-b);
-}
-
-.join-main p {
-	margin-bottom: 20px;
-}
-
-.join-main .form-control {
-	margin-bottom: 20px;
-}
-
-.join-main label {
-	display: block;
-	margin-bottom: 5px;
-}
-
-.join-main input[type='text'] {
-	font-size: 16px;
-	padding: 5px;
-	height: 40px;
-	width: 100%;
-}
-
-.join-main select {
-	font-size: 16px;
-	padding: 5px;
-	height: 40px;
-	width: 100%;
-}
-
-.join-main .btn {
-	margin-top: 20px;
-	width: 100%;
-}
-
-@media (max-width: 50px) {
-	.chat-main {
-		display: block;
-	}
-
-	.chat-sidebar {
-		display: none;
-	}
+.chat{
+    position: absolute;
+    border-style: solid;
+    width: 11%;
+    right: 5px;
+    border-radius: 8px;
 }
