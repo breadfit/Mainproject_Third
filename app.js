@@ -19,6 +19,15 @@ app.get('/', function (req, res) {
 	res.sendFile(__dirname + './public_html/blockland/index.html');
 });
 
+// Webpage static 접근
+app.use('/web', express.static(__dirname + '/Webpage'));
+
+// aboutUs static 접근
+app.use('/webus', express.static(__dirname + '/aboutUs_in_web'));
+
+// gallery static 접근
+app.use('/webgallery', express.static(__dirname + '/galleryPage_in_web'));
+
 io.sockets.on('connection', function (socket) {
 
 	socket.userData = { x: 0, y: 0, z: 0, heading: 0 };
