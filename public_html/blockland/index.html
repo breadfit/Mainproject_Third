@@ -21,7 +21,7 @@
 	<!-- w3schools -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 		integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+		crossorigin="anonymous" referrerpolicy="no-referrer">
 	<!-- 유니코드 쓰려면 아래 코드 필수!!!! -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -40,21 +40,19 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/92/three.min.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	<!-- <script type="module" src="libs/three.js-master/build/three.min.js"></script> -->
 
 	<script src="libs/FBXLoader.js"></script>
 	<script src="libs/inflate.min.js"></script>
-	<!-- 폰트관련 모듈1 -->
+	<!-- 폰트관련 모듈 -->
 	<script type="module" src="libs/three.js-master/src/loaders/FontLoader.js"></script>
-	<!-- 폰트관련 모듈2 -->
 	<script type="module" src="libs/three.js-master/src/geometries/TextGeometry.js"></script>
-	<!-- <script type="module" src="libs/three.js-master/examples/js/loaders/TTFLoader.js"></script> -->
 
 	<!-- 사운드 관련 모듈1 -->
 	<script type="module" src="libs/three.js-master/src/loaders/AudioLoader.js"></script>
 	<script type="module" src="libs/three.js-master/src/audio/AudioListener.js"></script>
 	<script type="module" src="libs/three.js-master/src/audio/Audio.js"></script>
 
+	<!-- 비디오 관련 모듈1 -->
 	<script type="module" src="libs/three.js-master/src/loaders/TextureLoader.js"></script>
 	<script type="module" src="libs/three.js-master/src/textures/Texture.js"></script>
 	<script type="module" src="libs/three.js-master/src/textures/VideoTexture.js"></script>
@@ -63,7 +61,7 @@
 	<!-- webRTC 모듈 -->
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@remotemonster/sdk/remon.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@remotemonster/sdk/remon.min.js"></script>
 
 	<script src="libs/Detector.js"></script>
 	<script src="libs/toon3d.js"></script>
@@ -87,24 +85,25 @@
 	<video id="video1" loop="" crossOrigin="anonymous" playsinline="" autoplay style="display: none;" controls>
 		<source src="./assets/video/production ID_5007874.mp4" type='video/mp4; codecs="avc1.4D401E, mp4a.40.2"'>
 	</video>
-	<video id="webcam" style="display:none" autoplay playsinline></video>
 
 	<!-- 사이드 바 -->
 	<div class="navigation">
 		<div class="bit">
-			<a href=""><img src="assets/images/logo.png" width="50" height="50"/> Bit Occasion </a>
+			<!-- C:\Users\bitcamp\Desktop\Mainproject_Second-master\Webpage\index.html -->
+			<a href="http://127.0.0.1:5500/Webpage/index.html"><img src="assets/images/logo.png" width="50"
+					height="50" /> Bit Occasion </a>
 		</div>
 		<div class="connect-users">
 			<span class="icon"><i class='fas fa-user-alt'> Connect </i></span>
 			<span id="users" type="text" readonly></span>
 		</div>
 		<ul>
-			<!-- <li>
-				<button class="btn">
-					<span class="icon"><i class='fas fa-home'></i></span>
-					<span class="title">Home</span>
+			<li>
+				<button class="btn" onclick="show_hide_cam()">
+					<span class="icon"><i class='fas fa-video-camera'></i></span>
+					<span class="title">Presentation</span>
 				</button>
-			</li> -->
+			</li>
 			<!-- <li>
 				<button class="btn">
 					<span class="icon"><i class='fas fa-user-alt'></i></span>
@@ -139,7 +138,7 @@
 	</div>
 	<!-- 여기는 새로운 채팅창 style="display: none;" -->
 	<div class="chat_main">
-			<span id="nav_title"> Chat </span>
+		<span id="nav_title"> Chat </span>
 		<div>
 			<textarea id="chatLog" class="chat_log" readonly></textarea>
 		</div>
@@ -170,29 +169,30 @@
 		</div>
 	</div>
 	<!-- webRTC local -->
-	<div id="wingleft"></div>
-    <div id="mymain_local">
-        <h2>방송</h2>
-        <video id="localVideo" class="remote-video" autoplay muted style="visibility: hidden;"></video>
-        <br>
-        <input id="channelNameInput" class="text-center" type="text" placeholder="channel name" autofocus>
-        <button id="localmystart" class="btn-main1">Room Create</button>
-        <button id="localmystop" class="btn-main" disabled>Stop</button>
-        <button id="screenshare" class="btn-main">screenshare</button>
-    </div>
-    <div id="wingright"></div>
+	<div class="ppt">
+		<div id="wingleft"></div>
+		<div id="mymain_local">
+			<h2>방송</h2>
+			<video id="localVideo" class="remote-video" autoplay muted style="visibility: hidden;"></video>
+			<br>
+			<input id="channelNameInput" class="text-center" type="text" placeholder="channel name" autofocus>
+			<button id="localmystart" class="btn-main1">Room Create</button>
+			<button id="localmystop" class="btn-main" disabled>Stop</button>
+			<button id="screenshare" class="btn-main">screenshare</button>
+		</div>
+		<div id="wingright"></div>
 
-	<!-- webRTC remote-->
-	<div id="wingleft"></div>
-    <div id="mymain_remote">
-        <h2>시청</h2>
-        <video id="remoteVideo" autoplay muted></video>
-        <br>
-        <button id="remotemystart" class="btn-main">Join</button>
-        <button id="remotemystop" class="btn btn-main" disabled>Stop</button>
-    </div>
-    <div id="wingright"></div>
-
+		<!-- webRTC remote-->
+		<div id="wingleft"></div>
+		<div id="mymain_remote">
+			<h2>시청</h2>
+			<video id="remoteVideo" autoplay muted></video>
+			<br>
+			<button id="remotemystart" class="btn-main">Join</button>
+			<button id="remotemystop" class="btn btn-main" disabled>Stop</button>
+		</div>
+		<div id="wingright"></div>
+	</div>
 	<script src="rtc_local.js"></script>
 	<script src="rtc_remote.js"></script>
 	<script>

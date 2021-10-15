@@ -31,12 +31,12 @@ body{
     /* 높이 100vh 는 vieport기준의 height비율
     즉 100vh는 100%를 의미 */
     height: 100vh;
-    background: linear-gradient(to right, #dadafc, #efbad6, #ffd6aa, #fef5d4);
+    background: linear-gradient( #e9e1d4, #f5ddad, #ffd0a6, #f1bcae);
+    /* background: #f1bcae; */
     /* 마우스가 navigation클래스에서 떨어지면 가로로 0.5초 */
     transition: width 0.5s;
     /* 넘친 컨텐츠는 잘려지고 안보임 */
     overflow: hidden;
-    
 }
 .navigation .bit{
     top: 5px;
@@ -53,13 +53,12 @@ body{
 .navigation .bit a{
     position: relative;
     text-decoration: none;
-    color: #fff;
+    color: #363636;
 }
-/* #fffafa */
 .navigation .connect-users{
     position: absolute;
     background: rgb(250, 240, 230);
-    color: rgb(17, 17, 17);
+    color: #363636;
     overflow: auto;
     z-index: 5;
     left: 10px;
@@ -74,7 +73,7 @@ body{
     border-radius: 8px;
 }
 .navigation .connect-users::-webkit-scrollbar-thumb{
-    background-color: rgb(17, 17, 17);
+    background-color: #fce9da;
     border-radius: 8px;
 }
 .navigation .connect-users::-webkit-scrollbar{
@@ -128,7 +127,7 @@ link -> visited -> hover -> active 순서로 해야 에러X */
 /* navigation 클래스의 ul태그의 li태그의
 hover설정(마우스가 위에 올라갔을 때) */
 .navigation ul li:hover{
-    background: #faf0e6;
+    background: #ff8080;
 }
 
 /* navigation 클래스의 ul태그의 li태그의 a태그설정 */
@@ -144,6 +143,7 @@ hover설정(마우스가 위에 올라갔을 때) */
 .navigation ul li .btn .icon{
     position: relative;
     display: block;
+    /* 최소 가로 크기 */
     min-width: 60px;
     height: 60px;
     line-height: 60px;
@@ -168,11 +168,12 @@ hover설정(마우스가 위에 올라갔을 때) */
     right: 0;
     width: 60px;
     height: 60px;
-    background: rgb(109, 146, 155);
+    background: linear-gradient(#e9e1d4, #f5ddad, #f1bcae);
+    
     cursor: pointer;
 }
 .toggle.active{
-    background: #faf0e6;
+    background: #ff8080;
 }
 .toggle:before{
     /* css 유니코드
@@ -192,7 +193,6 @@ hover설정(마우스가 위에 올라갔을 때) */
 }
 /* -------------사이드 바 안에 채팅창------------- */
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-
 
 .create-nick{
     position: absolute;
@@ -252,6 +252,8 @@ hover설정(마우스가 위에 올라갔을 때) */
     width: 97%;
     height: 235px;
     border-radius: 8px;
+    /* 크기 조절 불가 */
+    resize: none;
 }
 #chat{
     border-radius: 8px;

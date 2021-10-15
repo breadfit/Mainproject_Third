@@ -35,18 +35,7 @@ io.sockets.on('connection', function (socket) {
 
 		io.emit('nicksave', nickList)
 
-		// nicklist 초기화  
-
-		socket.on('updateData', (data) => {
-			nickList = data;
-			console.log("현재 인원", nickList)
-			//return nickList;
-		})
-
-		// const user = this.users.userJoin(socket.id, usernick );
-		// console.log("실험" , data.usernick);
-		// socket.join(user)
-
+	
 	})
 
 	socket.on('send message', function (name, text) {
@@ -67,7 +56,7 @@ io.sockets.on('connection', function (socket) {
 		for (let i = 0; i < nickList.length; i++) {
 			if (nickList[i].id == socket.id) {
 				nickList.splice(i, 1);
-				console.log("????", nickList)
+				console.log("마지막인원 체크", nickList)
 			}
 		}
 		socket.broadcast.emit('deletePlayer', { id: socket.id });//나를 제외한 전체에게 실시간 전송 // 특정 소켓 삭제

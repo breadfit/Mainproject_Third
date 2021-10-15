@@ -9,3 +9,15 @@ function show_hide(){
 
     chatShow = !chatShow;
 }
+
+// ppt menu
+function show_hide_cam(){
+
+    if(chatShow) {
+        $('.ppt').show();
+    } else {
+        $('.ppt').hide();
+    }
+
+    chatShow = !chatShow;
+}

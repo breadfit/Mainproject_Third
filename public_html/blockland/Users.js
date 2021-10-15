@@ -26,12 +26,12 @@ class Users {
 
         socket.on('nicksave', (data)=>{
              userList.innerHTML = `
-             ${data.map(data => `<br>${data.nick}`).join(',')}`
+             ${data.map(data => `<br>${data.nick}`).join('')}`
               users = data;
         })
         socket.on('deleteData', (data) => {
             userList.innerHTML = `
-            ${data.map(data => `<br>${data.nick}`).join(',')}`  
+            ${data.map(data => `<br>${data.nick}`).join('')}`  
         })
     }
 }

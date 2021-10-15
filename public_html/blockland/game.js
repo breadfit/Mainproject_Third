@@ -138,7 +138,7 @@ class Game {
 		// 텍스트1 : Stage(기타)
 		const fontLoader = new THREE.FontLoader();
 		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
-			const fgeometry = new THREE.TextGeometry('Stage', {
+			const fgeometry = new THREE.TextGeometry('STAGE', {
 				font: font,
 				size: 500, // 텍스트 크기
 				height: 20, // 돌출 두께
@@ -155,7 +155,7 @@ class Game {
 				new THREE.MeshPhongMaterial({ color: 0x5c2301 })	 // side
 			])
 			game.textMesh1.castShadow = true
-			game.textMesh1.position.set(-1000, 900, -1500) // 텍스트 위치
+			game.textMesh1.position.set(0, 900, -1500) // 텍스트 위치
 			game.scene.add(game.textMesh1)
 		});
 		// 텍스트1 팀명 : BIT 
@@ -177,12 +177,12 @@ class Game {
 				new THREE.MeshPhongMaterial({ color: 0x5c2301 })	 // side
 			])
 			game.textMesh2.castShadow = true
-			game.textMesh2.position.set(-1300, 900, -6000) // 텍스트 위치
+			game.textMesh2.position.set(-1300, 1600, -8650) // 텍스트 위치
 			game.scene.add(game.textMesh2)
 		});
 		// 텍스트2 팀명 : MetaUS
 		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
-			const fgeometry = new THREE.TextGeometry('MetaUS ', {
+			const fgeometry = new THREE.TextGeometry('META US ', {
 				font: font,
 				size: 500, // 텍스트 크기
 				height: 20, // 돌출 두께
@@ -199,13 +199,13 @@ class Game {
 				new THREE.MeshPhongMaterial({ color: 0x5c2301 })	 // side
 			])
 			game.textMesh3.castShadow = true
-			game.textMesh3.position.set(4000, 900, -7000) // 텍스트 위치
+			game.textMesh3.position.set(5200, 1600, -7400) // 텍스트 위치
 			game.textMesh3.rotation.y += 200
 			game.scene.add(game.textMesh3)
 		});
 		// 텍스트3 팀명 : 4Runner
 		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
-			const fgeometry = new THREE.TextGeometry('4Runner ', {
+			const fgeometry = new THREE.TextGeometry('4RUNNER ', {
 				font: font,
 				size: 500, // 텍스트 크기
 				height: 20, // 돌출 두께
@@ -222,13 +222,13 @@ class Game {
 				new THREE.MeshPhongMaterial({ color: 0x5c2301 })	 // side
 			])
 			game.textMesh4.castShadow = true
-			game.textMesh4.position.set(7000, 900, -2500) // 텍스트 위치
+			game.textMesh4.position.set(10000, 1600, -2450) // 텍스트 위치
 			game.textMesh4.rotation.y = 30
 			game.scene.add(game.textMesh4)
 		});
 		// 텍스트4 팀명 : 힐링캠프
 		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
-			const fgeometry = new THREE.TextGeometry('Healing Camp ', {
+			const fgeometry = new THREE.TextGeometry('HEALING CAMP ', {
 				font: font,
 				size: 500, // 텍스트 크기
 				height: 20, // 돌출 두께
@@ -245,13 +245,13 @@ class Game {
 				new THREE.MeshPhongMaterial({ color: 0x5c2301 })	 // side
 			])
 			game.textMesh5.castShadow = true
-			game.textMesh5.position.set(-7500, 900, 0) // 텍스트 위치
+			game.textMesh5.position.set(-8200, 1600, 0) // 텍스트 위치
 			game.textMesh5.rotation.y = 20
 			game.scene.add(game.textMesh5)
 		});
 		// 텍스트5 팀명 : Creeps
 		fontLoader.load("/assets/fonts/Cheapsman Free_Regular.json", function (font) {
-			const fgeometry = new THREE.TextGeometry('Creeps', {
+			const fgeometry = new THREE.TextGeometry('CREEPS', {
 				font: font,
 				size: 500, // 텍스트 크기
 				height: 20, // 돌출 두께
@@ -267,9 +267,8 @@ class Game {
 				new THREE.MeshPhongMaterial({ color: 0xad4000 }), // front
 				new THREE.MeshPhongMaterial({ color: 0x5c2301 })	 // side
 			])
-			
 			game.textMesh6.castShadow = true
-			game.textMesh6.position.set(-6000, 800, -5000) // 텍스트 위치
+			game.textMesh6.position.set(-6900, 1600, -5900) // 텍스트 위치
 			game.textMesh6.rotation.y = 19
 			game.scene.add(game.textMesh6)
 		});
@@ -292,11 +291,12 @@ class Game {
 				new THREE.MeshPhongMaterial({ color: 0x5c2301 })	 // side
 			])
 			game.textMesh7.castShadow = true
-			game.textMesh7.position.set(7500, 800, 1000) // 텍스트 위치
+			game.textMesh7.position.set(11000, 1600, 2000) // 텍스트 위치
 			game.textMesh7.rotation.y = 17
 			game.scene.add(game.textMesh7)
 		});
-		// 동영상 화면 텍스쳐 -- 대형 화면
+
+		// 동영상 화면 텍스쳐 -- Main Screen
 		this.video = document.getElementById('localVideo');
 		this.video.volume = 0.1;
 		const videoTexture = new THREE.VideoTexture(this.video);
@@ -308,9 +308,9 @@ class Game {
 		videoTexture.minFilter = THREE.LinearFilter; // 원래는 1920x960 이런식으로 영상의 사이즈에 맞게 설정해야하는데 
 		videoTexture.magFilter = THREE.LinearFilter; // 이 두개를 쓰면 그런 경고 사라짐
 
-		const videoGeometry = new THREE.PlaneGeometry(10500, 4700, 2000);  // 동영상 재생 화면 생성 및 크기조정
+		const videoGeometry = new THREE.PlaneGeometry(10500, 5000);  // 동영상 재생 화면 생성 및 크기조정
 		const videoScreen = new THREE.Mesh(videoGeometry, videoMaterial);  // 동영상 화면 및 videoMaterial
-		videoScreen.position.set(0, 2000, 3920); //이게 맞는 위치
+		videoScreen.position.set(0, 2685, 3920); //이게 맞는 위치
 		videoScreen.rotation.y = Math.PI
 		this.scene.add(videoScreen);
 		
@@ -349,7 +349,7 @@ class Game {
 			game.sound.setVolume(0.5);
 		});
 
-		const cube = new THREE.BoxGeometry( 1000, 1000, 1000 );
+		const cube = new THREE.BoxGeometry( 500, 500, 500 );
 		const cubeMaterial = new THREE.MeshPhongMaterial( { color: 0xff2200 } );
 		const cubeMesh = new THREE.Mesh( cube, cubeMaterial );
 		cubeMesh.position.set(0, 1000, 0)
@@ -361,14 +361,14 @@ class Game {
 
 		// ground
 		const tLoader = new THREE.TextureLoader();
-		const groundTexture = tLoader.load(`${this.assetsPath}images/KakaoTalk_20210916_161725622.jpg`);
+		const groundTexture = tLoader.load(`${this.assetsPath}images/wood.png`);
 		groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
 		groundTexture.repeat.set(8, 8);
 		groundTexture.encoding = THREE.sRGBEncoding;
 
 		const groundMaterial = new THREE.MeshLambertMaterial({ map: groundTexture });
 
-		const mesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(20000, 20000), groundMaterial);
+		const mesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(60000, 70000), groundMaterial);
 		mesh.rotation.x = - Math.PI / 2;
 		mesh.receiveShadow = true;
 		this.scene.add(mesh);
@@ -382,14 +382,316 @@ class Game {
 		const loader = new THREE.FBXLoader();
 		const MLoader = new THREE.MaterialLoader();
 
+		//stage "#CCEEFF" 하늘색
+		const geometry = new THREE.BoxGeometry(11000, 100, 3000); // 5000,x,x
+		const material = new THREE.MeshBasicMaterial({ color: "black", wireframe: false });
+		const stage = new THREE.Mesh(geometry, material); 			//시작할때 서있는 스테이지박스
+		stage.position.set(0, 100, 2950);
+		this.colliders.push(stage);
+		this.scene.add(stage);
+
+		// 계단
+		loader.load(`${this.assetsPath}fbx/SM_Buildings_Stairs_1x2_01P.fbx`, function (Stair) {
+			Stair.position.set(-400, 0, 1500);
+			Stair.scale.set(5, 3, 3);
+			Stair.rotation.y = Math.PI / 1;
+
+			tLoader.load(`${game.assetsPath}images/PolygonPrototype_Texture_04.png`, function (Stairtext) {
+				Stair.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = Stairtext;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(Stair);
+		});
+		//차  209KB
+		loader.load(`${this.assetsPath}fbx/SM_Veh_Car_Sports_01.fbx`, function (Car) {
+			Car.position.set(-3900, 150, 3000);
+			Car.scale.set(3, 3, 3);
+			Car.rotation.y = Math.PI / 1.4; 
+
+			tLoader.load(`${game.assetsPath}images/PolygonPrototype_Texture_04.png`, function (Cartext) {
+				Car.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = Cartext;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(Car);
+		});			
+		//트로피1 금  35KB
+		loader.load(`${this.assetsPath}fbx/SM_Icon_Cup_01.fbx`, function (Cup1) {
+			Cup1.position.set(-3600, 150, 2100);
+			Cup1.scale.set(3, 3, 3);
+			Cup1.rotation.y = Math.PI / 1.4;
+
+			tLoader.load(`${game.assetsPath}images/PolygonPrototype_Texture_01.png`, function (Cup1text) {
+				Cup1.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = Cup1text;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(Cup1);
+		});
+		//트로피2 은
+		loader.load(`${this.assetsPath}fbx/SM_Icon_Cup_02.fbx`, function (Cup2) {
+			Cup2.position.set(-3500, 150, 2100);
+			Cup2.scale.set(1.7, 1.7, 1.7);
+			Cup2.rotation.y = Math.PI / 1.4;
+
+			tLoader.load(`${game.assetsPath}images/PolygonPrototype_Texture_01.png`, function (Cup2text) {
+				Cup2.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = Cup2text;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(Cup2);
+
+		});
+		//트로피3 동
+		loader.load(`${this.assetsPath}fbx/SM_Icon_Cup_03.fbx`, function (Cup3) {
+			Cup3.position.set(-3700, 150, 2100);
+			Cup3.scale.set(1.7, 1.7, 1.7);
+			Cup3.rotation.y = Math.PI / 1.4;
+
+			tLoader.load(`${game.assetsPath}images/PolygonPrototype_Texture_01.png`, function (Cup3text) {
+				Cup3.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = Cup3text;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(Cup3);
+
+		});
+		//팀부스========================================================================================		
+		//   01.KMH 부스
+		loader.load(`${this.assetsPath}fbx/modeltest8.fbx`, function (smalloffice1) {
+			smalloffice1.position.set(11000, 450, 2000);  //(4800, 480, -9000)
+			smalloffice1.scale.set(3, 3, 3);
+			smalloffice1.rotation.y = Math.PI;
+
+			tLoader.load(`${game.assetsPath}images/PolygonOffice_Texture_01_A.png`, function (smalloffice1_tx) {
+				smalloffice1.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = smalloffice1_tx;
+						game.colliders.push(child);
+					}
+				});
+				game.scene.add(smalloffice1);
+			});
+		});		
+		// 비트(빝쟁이)
+		loader.load(`${this.assetsPath}fbx/modeltest8.fbx`, function (simpleoffice2) {
+			simpleoffice2.position.set(-1300, 450, -8650);
+			simpleoffice2.scale.set(3, 3, 3);
+			simpleoffice2.rotation.y = Math.PI*(1.5388);
+
+			tLoader.load(`${game.assetsPath}images/PolygonOffice_Texture_01_A.png`, function (simpleoffice2_tx) {
+				simpleoffice2.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = simpleoffice2_tx;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(simpleoffice2);
+
+		});
+		// creeps(크립스)
+		loader.load(`${this.assetsPath}fbx/modeltest8.fbx`, function (simpleoffice2) {
+			simpleoffice2.position.set(-6900, 450, -5900);
+			simpleoffice2.scale.set(3, 3, 3);
+			simpleoffice2.rotation.y = Math.PI*(1.8);
+
+			tLoader.load(`${game.assetsPath}images/PolygonOffice_Texture_01_A.png`, function (simpleoffice2_tx) {
+				simpleoffice2.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = simpleoffice2_tx;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(simpleoffice2);
+		});
+		// healing camp(힐링캠프)
+		loader.load(`${this.assetsPath}fbx/modeltest8.fbx`, function (simpleoffice2) {
+			simpleoffice2.position.set(-8200, 450, 0);
+			simpleoffice2.scale.set(3, 3, 3);
+			simpleoffice2.rotation.y = Math.PI*(2);
+
+			tLoader.load(`${game.assetsPath}images/PolygonOffice_Texture_01_A.png`, function (simpleoffice2_tx) {
+				simpleoffice2.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = simpleoffice2_tx;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(simpleoffice2);
+		});
+		// 미트어스
+		loader.load(`${this.assetsPath}fbx/modeltest8.fbx`, function (simpleoffice2) {
+			simpleoffice2.position.set(5200, 450, -7400);
+			simpleoffice2.scale.set(3, 3, 3);
+			simpleoffice2.rotation.y = Math.PI*(4/3);
+
+			tLoader.load(`${game.assetsPath}images/PolygonOffice_Texture_01_A.png`, function (simpleoffice2_tx) {
+				simpleoffice2.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = simpleoffice2_tx;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(simpleoffice2);
+
+		});
+		
+		//Floor 팀명 : 4Runner(포러너)
+		loader.load(`${this.assetsPath}fbx/modeltest8.fbx`, function (floor) {
+			floor.position.set(10000, 500, -2450);
+			floor.scale.set(3, 3, 3);
+			floor.rotation.y = Math.PI * (7/6); 
+			;
+			tLoader.load(`${game.assetsPath}images/PolygonOffice_Texture_01_A.png`, function (floor_tx) {
+				floor.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = floor_tx;
+						game.colliders.push(child);
+					}
+				});
+				game.scene.add(floor);
+			});
+		});
+		//엔피씨(NPC)----------------------------------------------------------------------------------------
+		// // woman01
+		// loader.load(`${this.assetsPath}fbx/woman02.fbx`, function (woman02) {
+		// 	woman02.position.set(1000, 200, -3000);
+		// 	woman02.scale.set(1.5, 1.5, 1.5);
+		// 	woman02.rotation.y = Math.PI / 12;  // 분모가 커지면 y축 기준 시계방향으로 회전한다
+
+		// 	tLoader.load(`${game.assetsPath}images/PolygonOffice_Texture_01_A.png`, function (woman02_tx) {
+		// 		woman02.traverse(function (child) {
+		// 			if (child.isMesh) {
+		// 				child.material.map = woman02_tx;
+		// 				game.colliders.push(child);
+		// 			}
+		// 		});
+		// 	});
+		// 	game.scene.add(woman02);
+		// });
+		//남자매니저 202KB
+		loader.load(`${this.assetsPath}fbx/lpMale_casual_K.FBX`, function (lpMale_casual_K) {
+			lpMale_casual_K.position.set(1400, 50, -3000);
+			lpMale_casual_K.scale.set(5, 3, 5);
+			//lpMale_casual_K.rotation.y = Math.PI ;
+
+			tLoader.load(`${game.assetsPath}images/world_people_colors.png`, function (lpMale_casual_K_tx) {
+				lpMale_casual_K.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = lpMale_casual_K_tx;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(lpMale_casual_K);
+		});			
+		//structure(객석)====================================================================================
+		loader.load(`${this.assetsPath}fbx/Structure.fbx`, function (structure) {
+			structure.position.set(0, 0, -400);
+			structure.scale.set(1.5, 1.5, 1.5);  // 원래 스케일2였음
+			structure.rotation.y = Math.PI / 18;  // 무대기준으로 structure가 정방향이 됨
+
+			tLoader.load(`${game.assetsPath}images/carpet.png`, function (structure_tx) {
+				structure.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = structure_tx;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(structure);
+		});
+		// stairs
+		loader.load(`${this.assetsPath}fbx/Stairs.fbx`, function (stairs) {
+			stairs.position.set(-100, 250, -420);
+			stairs.scale.set(1.5, 1.5, 1.5);
+			stairs.rotation.y = Math.PI / 12;  // 분모가 커지면 y축 기준 시계방향으로 회전한다
+
+			tLoader.load(`${game.assetsPath}images/carpet.png`, function (stairs_tx) {
+				stairs.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = stairs_tx;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(stairs);
+		});
+		// wework
+		loader.load(`${this.assetsPath}fbx/wall.fbx`, function (wework) {
+			wework.position.set(-10000, 10, -22000);
+			wework.scale.set(1.5, 1.5, 1.5);
+			wework.rotation.y = Math.PI ;  // 분모가 커지면 y축 기준 시계방향으로 회전한다
+
+			tLoader.load(`${game.assetsPath}images/wework/marble.png`, function (wework_tx) {
+				wework.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = wework_tx;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(wework);
+		});
+		// wework_desk
+		loader.load(`${this.assetsPath}fbx/wework_desk01.fbx`, function (wework) {
+			wework.position.set(-3500, 150, -20900);
+			wework.scale.set(1.5, 1.5, 1.5);
+			wework.rotation.y = Math.PI ;  // 분모가 커지면 y축 기준 시계방향으로 회전한다
+
+			tLoader.load(`${game.assetsPath}images/PolygonOffice_Texture_01_A.png`, function (wework_tx) {
+				wework.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = wework_tx;
+						game.colliders.push(child);
+					}
+				});
+			});
+			game.scene.add(wework);
+		});
+		// skydome
+		loader.load(`${this.assetsPath}fbx/skydome.fbx`, function (SimpleSky) {
+			SimpleSky.position.set(-500, 250, -420);
+			SimpleSky.scale.set(0.8, 0.8, 0.8);
+			SimpleSky.rotation.y = Math.PI / 12;  // 분모가 커지면 y축 기준 시계방향으로 회전한다
+
+			tLoader.load(`${game.assetsPath}images/SimpleSky.png`, function (SimpleSky_tx) {
+				SimpleSky.traverse(function (child) {
+					if (child.isMesh) {
+						child.material.map = SimpleSky_tx;
+						game.colliders.push(child);23
+					}
+				});
+			});
+			game.scene.add(SimpleSky);
+		});
+
 		// model
 		const game = this;
 
 		this.player = new PlayerLocal(this);//플레이어는 플레이어로컬클래스가 단순히 매개변수로 게임을 전달
 
 		this.loadEnvironment(loader);
-
-
 
 		this.joystick = new JoyStick({
 			onMove: this.playerControl,
@@ -450,7 +752,6 @@ class Game {
 			'KakaoTalk_20210916_195442737.png', 'KakaoTalk_20210916_195442737.png',
 			'KakaoTalk_20210916_195442737.png', 'KakaoTalk_20210916_195442737.png'
 		]);
-
 		game.scene.background = textureCube;
 
 		game.loadNextAnim(loader);
@@ -709,6 +1010,7 @@ class Game {
 
 		if (this.isPlaying){
 			this.sound.play();
+			this.cubeMesh.rotation.y += 0.01;
 		}else{
 			this.sound.pause();
 		}
