@@ -53,7 +53,7 @@ body{
     animation: animate 60s linear infinite;
 }
 @keyframes animate{
-    0%{
+    2%{
         transform: perspective(1500px) rotateY(0deg);
     }
     100%{
@@ -78,17 +78,17 @@ body{
     object-fit: cover;
 }
 .spin{
-    animation: spin 4.0s linear infinite;
+    animation: spin 5.0s linear infinite;
 }
 @keyframes spin{
     0%{
         /* filter: hue-rotate(0deg); */
-        transform: perspective(1500px) rotateY(0deg);
+        transform: perspective(300px) rotateY(0deg);
         -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, #0004);
     }
     100%{
         /* filter: hue-rotate(360deg); */
-        transform: perspective(1500px) rotateY(360deg);
+        transform: perspective(300px) rotateY(360deg);
         -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, #0004);
     }
 }
