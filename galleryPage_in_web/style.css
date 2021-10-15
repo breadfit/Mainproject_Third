@@ -50,7 +50,7 @@ body{
     height: 200px;
     width: 200px;
     transform-style: preserve-3d;
-    animation: animate 60s linear infinite;
+    animation: animate 90s linear infinite;
 }
 @keyframes animate{
     2%{
@@ -68,7 +68,7 @@ body{
     width: 100%;
     transform-style: preserve-3d;
     transform-origin: center;
-    transform: rotateY(calc(var(--v) * 15deg)) translateZ(800px);
+    transform: rotateY(calc(var(--v) * 14deg)) translateZ(950px);
     -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, #0004);
 }
 .box div img{
@@ -83,12 +83,12 @@ body{
 @keyframes spin{
     0%{
         /* filter: hue-rotate(0deg); */
-        transform: perspective(300px) rotateY(0deg);
+        transform: perspective(1000px) rotateY(0deg);
         -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, #0004);
     }
     100%{
         /* filter: hue-rotate(360deg); */
-        transform: perspective(300px) rotateY(360deg);
+        transform: perspective(1000px) rotateY(360deg);
         -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, #0004);
     }
 }
