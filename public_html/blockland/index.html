@@ -89,7 +89,6 @@
 	<!-- 사이드 바 -->
 	<div class="navigation">
 		<div class="bit">
-			<!-- C:\Users\bitcamp\Desktop\Mainproject_Second-master\Webpage\index.html -->
 			<a href="http://127.0.0.1:5500/Webpage/index.html"><img src="assets/images/logo.png" width="50"
 					height="50" /> Bit Occasion </a>
 		</div>
@@ -169,11 +168,11 @@
 		</div>
 	</div>
 	<!-- webRTC local -->
-	<div class="ppt">
+	<!-- <div class="ppt"> -->
 		<div id="wingleft"></div>
 		<div id="mymain_local">
 			<h2>방송</h2>
-			<video id="localVideo" class="remote-video" autoplay muted style="visibility: hidden;"></video>
+			<video id="localVideo" class="remote-video" autoplay style="visibility: hidden;"></video>
 			<br>
 			<input id="channelNameInput" class="text-center" type="text" placeholder="channel name" autofocus>
 			<button id="localmystart" class="btn-main1">Room Create</button>
@@ -192,9 +191,10 @@
 			<button id="remotemystop" class="btn btn-main" disabled>Stop</button>
 		</div>
 		<div id="wingright"></div>
-	</div>
+	<!-- </div> -->
 	<script src="rtc_local.js"></script>
 	<script src="rtc_remote.js"></script>
+	
 	<script>
 		//let nickList = [];
 		$('.save-nick').click(function () {

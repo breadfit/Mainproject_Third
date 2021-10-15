@@ -308,7 +308,7 @@ class Game {
 		videoTexture.minFilter = THREE.LinearFilter; // 원래는 1920x960 이런식으로 영상의 사이즈에 맞게 설정해야하는데 
 		videoTexture.magFilter = THREE.LinearFilter; // 이 두개를 쓰면 그런 경고 사라짐
 
-		const videoGeometry = new THREE.PlaneGeometry(10500, 5000);  // 동영상 재생 화면 생성 및 크기조정
+		const videoGeometry = new THREE.PlaneGeometry(10500, 5000, 2000);  // 동영상 재생 화면 생성 및 크기조정
 		const videoScreen = new THREE.Mesh(videoGeometry, videoMaterial);  // 동영상 화면 및 videoMaterial
 		videoScreen.position.set(0, 2685, 3920); //이게 맞는 위치
 		videoScreen.rotation.y = Math.PI
@@ -1010,7 +1010,6 @@ class Game {
 
 		if (this.isPlaying){
 			this.sound.play();
-			this.cubeMesh.rotation.y += 0.01;
 		}else{
 			this.sound.pause();
 		}

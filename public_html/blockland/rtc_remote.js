@@ -12,7 +12,7 @@ var config = {
     },
     media: {
         recvonly: true,
-        // audio: true,
+        audio: true,
         // video: true
     }
 };
@@ -37,10 +37,10 @@ $('#remotemystop').click(function () {
 });
 
 remotesocket.on('channelnametowatch', function (remoteChannelId) {
-    console.log("dsadsad", remoteChannelId);
+    setTimeout(remoteremon.joinCast(remoteChannelId), 3000)
+    // $('#remotemystart').click(function () {
 
-    $('#remotemystart').click(function () {
-
-        remoteremon.joinCast(remoteChannelId);
-    })
+    //     remoteremon.joinCast(remoteChannelId);
+        
+    // })
 });

@@ -1,7 +1,3 @@
-@font-face {
-  font-family: abster;
-  src: url(/fonts/abster-webfont.woff) format('woff');
-}
 *
 {
   margin: 0;
@@ -32,7 +28,6 @@ body {
 }
 
 .container {
-
   float: left;
   width: 50%;
   height: 100%;
@@ -50,7 +45,6 @@ body {
 }
 
 .container .header{
-  
   width: 80%;
   height: 80px;
   margin: 0 auto;

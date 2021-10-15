@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+          <li><a href="http://127.0.0.1:5500/aboutUs_in_web/index.html">About Us</a></li>
+        </ul>
+      </div>
+    <div class="text">
+    <div class="engtext">
+        <p>
+            <span>Life brings tears, smiles, and memories.
+                <br>
+                The tears dry, The smiles fade,
+                <br>
+                but memories last forever.
+            </span>
+        </p>
+    </div>
+    <div class="kortext">
+        <p>
+            <span>삶은 눈물, 웃음, 추억 모두 가져다준다.
+                <br>
+                눈물은 마르고 웃음은 희미해지지만
+                <br>
+                추억은 영원히 지속된다.
+            </span>
+        </p>
+    </div>
+    </div>
+    <div class="home">
+        <h1><a href="http://127.0.0.1:5500/Webpage/index.html">Bit Occasion</a></h1>
+    </div>
+    <div class="box">
+        <div style="--v: 1;"><img src="image/1.jpg"></div>
+        <div style="--v: 2;"><img src="image/2.jpg"></div>
+        <div style="--v: 3;"><img src="image/3.jpg"></div>
+        <div style="--v: 4;"><img src="image/4.jpg"></div>
+        <div style="--v: 5;"><img src="image/5.jpg"></div>
+        <div style="--v: 6;"><img src="image/6.jpg"></div>
+        <div style="--v: 7;"><img src="image/7.jpg"></div>
+        <div style="--v: 8;"><img src="image/8.jpg"></div>
+        <div style="--v: 9;"><img src="image/8.jpg"></div>
+        <div style="--v: 10;"><img src="image/8.jpg"></div>
+        <div style="--v: 11;"><img src="image/8.jpg"></div>
+        <div style="--v: 12;"><img src="image/8.jpg"></div>
+        <div style="--v: 13;"><img src="image/8.jpg"></div>
+        <div style="--v: 14;"><img src="image/8.jpg"></div>
+        <div style="--v: 15;"><img src="image/8.jpg"></div>
+        <div style="--v: 16;"><img src="image/8.jpg"></div>
+        <div style="--v: 17;"><img src="image/8.jpg"></div>
+        <div style="--v: 18;"><img src="image/8.jpg"></div>
+        <div style="--v: 19;"><img src="image/8.jpg"></div>
+        <div style="--v: 20;"><img src="image/8.jpg"></div>
+        <div style="--v: 21;"><img src="image/8.jpg"></div>
+        <div style="--v: 22;"><img src="image/8.jpg"></div>
+        <div style="--v: 23;"><img src="image/8.jpg"></div>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('.box div').click(function () {
+            if ($(this).hasClass('spin')) {
+                $('.box div').removeClass('spin');
+            }
+            else {
+                $('.box div').removeClass('spin');
+                $(this).addClass('spin');
+            }
+        });
+    });
+</script>
+
+</html>
