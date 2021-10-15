@@ -14,6 +14,9 @@ let nickList = [];
 app.use(express.static('./public_html/blockland/users'));
 app.use(express.static('./public_html/blockland/'));
 app.use(express.static('./public_html/libs'));
+
+app.use('/web', express.static(__dirname + '/Webpage'));
+
 // app.use(express.static('../.a./public_html/blockland/v3'));
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + './public_html/blockland/index.html');
@@ -75,7 +78,13 @@ io.sockets.on('connection', function (socket) {
 		socket.userData.z = data.z;
 		socket.userData.heading = data.h;
 		socket.userData.pb = data.pb,
-			socket.userData.action = "Idle";
+		socket.userData.action = "Idle";
+
+//################################################//		
+		socket.userData.nick = data.nick;
+//################################################//		
+
+
 	});
 
 	socket.on('update', function (data) {//클라이언트측 소켓이 함수사용하여 업데이터할때마다 업데이트정보를 얻음
@@ -84,7 +93,7 @@ io.sockets.on('connection', function (socket) {
 		socket.userData.z = data.z;
 		socket.userData.heading = data.h;
 		socket.userData.pb = data.pb,
-			socket.userData.action = data.action;
+		socket.userData.action = data.action;
 	});
 
 	socket.on('chat message', function (data) {//클라이언트에서 내보내졌고 서버에 있으므로 이벤트가 아닌것으로 응답
@@ -114,7 +123,10 @@ setInterval(function () {
 				z: socket.userData.z,
 				heading: socket.userData.heading,
 				pb: socket.userData.pb,
-				action: socket.userData.action
+				action: socket.userData.action,
+//################################################//		
+				nick: socket.userData.nick
+//################################################//		
 			});
 		}
 	}

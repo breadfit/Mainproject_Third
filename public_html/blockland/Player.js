@@ -77,34 +77,43 @@ class Player {
 				player.object.userData.id = player.id;
 				player.object.userData.remotePlayer = true;//멀티플레이어의 사용자 데이터를 true
 				const players = game.initialisingPlayers.splice(game.initialisingPlayers.indexOf(this), 1);//플레이어찾아서
+
+//################################################//		
+// nickname용 객체 생성 시작
+				game.remoteData.find((data)=>{
+					if(data.id === player.id) {
+						const fontLoader = new THREE.FontLoader();
+						fontLoader.load("/libs/three.js-master/examples/fonts/helvetiker_regular.typeface.json", function (font) {
+						/////////////////////////// 생성자로 넘겨받은 game에서 userNick를 get 함.
+							const fgeometry = new THREE.TextGeometry( data.nick, {
+								font: font,
+								size: 50, // 텍스트 크기
+								height: 20, // 돌출 두께
+								curveSegments: 12, // 곡선의 점 : 기본값 12
+								bevelEnabled: false, // 윤곽선 on
+								bevelThickness: 0, // 윤곽선 두께? : 기본값 10
+								bevelSize: 0, //텍스트 윤곽선 : 기본값 8
+								bevelOffset: 0, // 텍스트 윤곽선이 시작 되는 거리 : 기본값 0
+								bevelSegments: 5
+							});
+							fgeometry.center(); // 폰트 중심점 설정하기
+							player.nickname = new THREE.Mesh(fgeometry, [
+								new THREE.MeshPhongMaterial({ color: 0xad4000 }), // front
+								new THREE.MeshPhongMaterial({ color: 0x5c2301 })     // side
+							])
+							player.nickname.castShadow = true
+							player.nickname.position.set(player.object.position.x, player.object.position.y+200, player.object.position.z) // 텍스트 위치
+							game.scene.add(player.nickname);
+						});
+
+					}
+				})
+
+// nickname용 객체 생성 끝
+//################################################//		
+
 				game.remotePlayers.push(players[0]);//원격플레이어배열에 푸쉬
 
-				////////////////////////////////////////////
-				// nickname용 객체 생성 시작           
-				const fontLoader = new THREE.FontLoader();
-				fontLoader.load("/libs/three.js-master/examples/fonts/helvetiker_regular.typeface.json", function (font) {
-				/////////////////////////// 생성자로 넘겨받은 game에서 userNick를 get 함.
-					const fgeometry = new THREE.TextGeometry( game.userNick, {
-						font: font,
-						size: 50, // 텍스트 크기
-						height: 20, // 돌출 두께
-						curveSegments: 12, // 곡선의 점 : 기본값 12
-						bevelEnabled: false, // 윤곽선 on
-						bevelThickness: 0, // 윤곽선 두께? : 기본값 10
-						bevelSize: 0, //텍스트 윤곽선 : 기본값 8
-						bevelOffset: 0, // 텍스트 윤곽선이 시작 되는 거리 : 기본값 0
-						bevelSegments: 5
-					});
-					fgeometry.center(); // 폰트 중심점 설정하기
-					player.nickname = new THREE.Mesh(fgeometry, [
-						new THREE.MeshPhongMaterial({ color: 0xad4000 }), // front
-						new THREE.MeshPhongMaterial({ color: 0x5c2301 })     // side
-					])
-					player.nickname.castShadow = true
-					player.nickname.position.set(player.object.position.x, player.object.position.y+200, player.object.position.z) // 텍스트 위치
-					game.scene.add(player.nickname);
-				});
-				// nickname용 객체 생성 끝
 			}
 
 			if (game.animations.Idle !== undefined) player.action = "Idle";
@@ -144,7 +153,7 @@ class Player {
 				this.action = data.action;
 				found = true;
 // nickname 용 update 시작
-				this.nickname.position.set(data.x, data.y+500, data.z);
+				this.nickname.position.set(data.x, data.y+400, data.z);
 // nickname 용 update 끝
 			}
 			if (!found) this.game.removePlayer(this);//특정항목 못찾을시 false로 설정된 플레이어 제거

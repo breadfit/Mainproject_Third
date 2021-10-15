@@ -61,7 +61,11 @@ class PlayerLocal extends Player {// 로컬플레이어에만 적용되는 소�
 			y: this.object.position.y,
 			z: this.object.position.z,
 			h: this.object.rotation.y,
-			pb: this.object.rotation.x
+			pb: this.object.rotation.x,
+//################################################//		
+			nick: this.nick
+//################################################//		
+			
 		});
 	}
 

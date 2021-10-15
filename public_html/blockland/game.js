@@ -132,6 +132,7 @@ class Game {
 
 		this.sun = light;
 		this.scene.add(light);
+
 		// --------------------------------------------------------------------------------------------------------------------
 		// -----------------------------------------------------텍 스 트-------------------------------------------------------
 		// --------------------------------------------------------------------------------------------------------------------
@@ -472,6 +473,7 @@ class Game {
 			game.scene.add(Cup3);
 
 		});
+
 		//팀부스========================================================================================		
 		//   01.KMH 부스
 		loader.load(`${this.assetsPath}fbx/modeltest8.fbx`, function (smalloffice1) {
@@ -669,6 +671,7 @@ class Game {
 			});
 			game.scene.add(wework);
 		});
+
 		// skydome
 		loader.load(`${this.assetsPath}fbx/skydome.fbx`, function (SimpleSky) {
 			SimpleSky.position.set(-500, 250, -420);
@@ -688,8 +691,11 @@ class Game {
 
 		// model
 		const game = this;
-
+		
 		this.player = new PlayerLocal(this);//플레이어는 플레이어로컬클래스가 단순히 매개변수로 게임을 전달
+//################################################//		
+		this.player.nick = this.userNick;
+//################################################//		
 
 		this.loadEnvironment(loader);
 
